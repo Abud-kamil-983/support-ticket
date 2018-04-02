@@ -1,0 +1,28 @@
+<div class="row" ng-controller = "TicketListController as ticketCtrl">
+  <div class="col-sm-12">
+    <div class="jumbotron" style="height: 100%;" ng-init="ticketCtrl.showTicketList()">
+      <div ng-show="ticketCtrl.loadingfull" class="animationload">
+        <div class="osahanloading">
+        </div>
+      </div>
+      <div class="row">
+      <a href="#!/create-ticket" class="btn mdb-color btn-lg outline"><i class="fa fa-plus-square mr-1"></i> Create A Ticket</a>
+      <a ng-show="ticketCtrl.token" style="float: right;" class="btn btn-elegant" href="" ng-click = "ticketCtrl.logout()">logout</a>
+    </div>
+      <div class="list-group" ng-repeat = "ticket in ticketCtrl.tickets">
+        <a href="#!/ticket-details/{{ticket._id}}" class="list-group-item list-group-item-action flex-column align-items-start ">
+          <div class="d-flex w-100 justify-content-between">
+            <h3 class="mb-1 ak-ticket-heading">{{ticket.title}}</h3>
+            <small am-time-ago="ticket.created"></small>
+          </div>
+          <div ng-bind-html="ticket.description"></div>
+
+          <small class="text-muted">Posted by:  <strong class="ak-ticket-heading">{{ticket.askedBy.fullName}}</strong></small>
+          <small style="float: right;" class="text-muted">Status:  <strong class="ak-ticket-heading">{{ticket.status == 'O' ?'Open':'Closed'}}</strong></small>
+        </a>  
+      </div>
+      <h3 class="mb-1 ak-ticket-heading text-center" ng-hide="ticketCtrl.tickets.length !== 0">You have not posted any query!</h3>
+
+    </div>
+  </div>
+</div>

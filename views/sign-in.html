@@ -1,0 +1,46 @@
+<div class="row" ng-controller="LoginController as loginCtrl">
+  <div class="col-sm-12">
+    <div class="jumbotron" style="height: 100%;">
+      <nav class="navbar navbar-expand-lg navbar-dark mdb-color">
+        <div class="ak-title">
+          <h3><strong>Abud Support Ticket</strong></h3>
+            <p>Abud Support ticket is a simple, easy to use, web-based customer support system. User can create ticket from front-end. Abud support ticket comes packed with lot features than most of the expensive(and complex) support ticket system on market. The best part is, It completely free.</p>
+          </div>
+        </nav>
+        <hr class="my-5">
+        <!-- Material form login -->
+        <form name="loginForm" ng-submit = "loginCtrl.submitSigninForm(loginForm)" novalidate>
+          <p class="h3 text-center mb-4">Please Sign in To Enter The System</p>
+          <!-- Material input email -->
+          <div class="md-form">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input name="email" ng-model = "loginCtrl.signin.email" type="email" id="materialFormLoginEmailEx" class="form-control" required="">
+            <label for="materialFormLoginEmailEx">Your email <strong class="saffText">*</strong></label>
+              <p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> email must be valid.</p>
+
+          </div>
+          <!-- Material input password -->
+          <div class="md-form">
+            <i class="fa fa-lock prefix grey-text"></i>
+            <input name="password" ng-model = "loginCtrl.signin.password" type="password" id="materialFormLoginPasswordEx" class="form-control" required="">
+            <label for="materialFormLoginPasswordEx">Your password <strong class="saffText">*</strong></label>
+              <p ng-show="loginForm.password.$invalid && loginForm.password.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> password is required.</p>
+
+          </div>
+          <div class="text-center mt-4">
+            <input ng-disabled = "loginCtrl.loading" class="btn btn-lg mdb-color" type="submit">
+          </div>
+          <div class="text-center mt-4">
+              <div class="loader" ng-show="loginCtrl.loading"></div>
+          </div>
+        </form>
+        <div class="text-center mt-4">
+          <a href="#!/forgot-password"><button class="btn btn-lg btn-outline-warning waves-effect" type="submit">Forgot Password</button></a>
+        </div>
+        <!-- Material form login -->
+        <div class="modal-footer mx-5 pt-3 mb-1">
+          <p class="font-small dark-grey-text text-center d-flex justify-content-center mb-3 pt-2">Not a member? <a href="#!/sign-up" class="btn mdb-color btn-lg outline"> Sign Up</a></p>
+        </div>
+      </div>
+    </div>
+  </div>

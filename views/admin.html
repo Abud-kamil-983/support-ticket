@@ -1,0 +1,46 @@
+<div class="row" ng-controller = "AdminController as adminCtrl">
+  <div class="col-sm-12">
+    <div class="jumbotron" style="height: 100%;" ng-init = "adminCtrl.getTickets()">
+      <h3 class="mb-1 ak-ticket-heading text-center">Welcome Admin!</h3>
+     <div ng-show="adminCtrl.loadingfull" class="animationload">
+        <div class="osahanloading">
+        </div>
+      </div>
+  <label for="sel1">Filter By Status:</label>
+  <select ng-model="search.status" class=" btn mdb-color dropdown-toggle waves-light" id="sel1">
+          <option value="" selected="selected">Choose</option>
+
+    <option value="C">closed</option>
+    <option value="O">open</option>
+  </select>
+<div class="table-responsive">
+      <table class="table">
+
+        <!--Table head-->
+        <thead class="mdb-color">
+          <tr class="text-white">
+            <th>Title</th>
+            <th>Query</th>
+            <th>Status</th>
+            <th>Posted By</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="ticket in adminCtrl.tickets | filter: {'status':search.status}">
+            <td>{{ticket.title}}</td>
+            <td ng-bind-html="ticket.description"></td>
+            <td>{{ticket.status == 'C' ? 'Closed' :'Open'}}</td>
+            <td>{{ticket.askedBy.fullName}}</td>
+            <td>{{ticket.askedBy.email}}</td>
+            <td>{{ticket.askedBy.mobile}}</td>
+            <td><a href="#!/admin/ticket-details/{{ticket._id}}"><i class="fa fa-eye" style="font-size:24px" aria-hidden="true"></i></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+</div>

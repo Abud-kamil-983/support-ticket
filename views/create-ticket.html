@@ -1,0 +1,30 @@
+<div class="row" ng-controller="CreateTicketController as createCtrl">
+  <div class="col-sm-12">
+    <div class="jumbotron" style="height: 100%;">
+      <form name="createForm" ng-submit = "createCtrl.saveTicket(createForm, createCtrl.picFile)" enctype="multipart/form-data" novalidate>
+        <p class="h3 text-center mb-4">Generate Your Ticket</p>
+        <!-- Material input email -->
+        <div class="md-form">
+          <input name="title" ng-model="createCtrl.ticket.title" type="text" id="materialFormLoginEmailEx" class="form-control-lg" required="">
+          <label for="materialFormLoginEmailEx">Query title <strong class="saffText">*</strong></label>
+          <p ng-show="createForm.title.$invalid && createForm.title.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> title is required.</p
+        </div>
+          <small class="font-small dark-grey-text d-flex  mb-3 pt-2">Describe your query <strong class="saffText"> *</strong></small>
+          <textarea name="description" ui-tinymce ng-model="createCtrl.ticket.description" required=""></textarea>
+          <p ng-show="createForm.description.$invalid && createForm.description.$touched" class="font-small error-alert text-center d-flex justify-content-center mb-3 pt-2"> description is required.</p>
+        <div class="md-form">
+          <input type="file" ngf-select ng-model="createCtrl.picFile" class="form-control">
+        </div>
+        <div class="text-center">
+          <input ng-disabled="createCtrl.loading" class="btn btn-lg mdb-color" type="submit">
+        </div>
+        <div class="text-center">
+              <div class="loader" ng-show="createCtrl.loading"></div>
+        </div>
+      </form>
+       <div class="text-center">
+          <button back class="btn btn-lg btn-danger" type="button">Cancel</button>
+        </div>
+    </div>
+  </div>
+</div>

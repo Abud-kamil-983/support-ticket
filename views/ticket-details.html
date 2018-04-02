@@ -1,0 +1,69 @@
+
+<div class="row" ng-controller = "TicketDetailsController as detailsCtrl">
+  <div class="col-sm-12">
+
+    <div class="jumbotron" style="height: 100%;" ng-init="detailsCtrl.getTicketDetails()">
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="text-center"><i class="fa fa-user" aria-hidden="true"></i></div>
+          <div class="text-center" style="margin-top: 5%;">
+            <strong  class=" ak-ticket-heading">{{detailsCtrl.ticket[0].askedBy.fullName}}</strong>
+          </div>
+          <div class="text-center">
+            <small am-time-ago="detailsCtrl.ticket[0].created"></small>          
+          </div>
+        </div>
+        <div class="col-sm-10">
+          <h3 class="mb-1 ak-ticket-heading">{{detailsCtrl.ticket[0].title}}</h3>
+          <div class=" mb-1" ng-bind-html="detailsCtrl.ticket[0].description"></div>
+          <a ng-if = "detailsCtrl.ticket[0].file" ng-href="{{detailsCtrl.baseUrl + detailsCtrl.ticket[0].file}}">Supported file</a>
+          <div style="float: right;" >
+            <small class="text-muted">change status:</small>                <button ng-hide="detailsCtrl.hideIt"  ng-class = "{'btn-outline-success':detailsCtrl.ticket[0].status == 'C', 'btn-outline-warning':detailsCtrl.ticket[0].status == 'O'}" class="btn btn-sm text-center" ng-click = "detailsCtrl.changeStatus()" type="button">{{detailsCtrl.ticket[0].status == 'O'? 'close it!':'open it!'}}<div class="loader" ng-show="detailsCtrl.loadingStatus"></div></button>
+          </div>
+
+        </div>
+      </div>
+      <hr class="my-5">
+      <p class="h3 text-center mb-4">Answers</p>
+      <hr class="my-3">
+      <div ng-repeat = "answer in detailsCtrl.ticket[0].answers">
+        <div class="row" >
+          <div class="col-sm-2"></div>
+          <div class="col-sm-2">
+            <div class="text-center"><i class="fa fa-user" aria-hidden="true"></i></div>
+            <div class="text-center" style="margin-top: 5%;">
+              <strong  class=" ak-ticket-heading">{{answer.answerBy}}</strong>
+            </div>
+            <div class="text-center">
+              <small am-time-ago="answer.date"></small>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div ng-bind-html="answer.body"></div>
+          </div>
+        </div>
+        <hr class="my-5">
+
+      </div> 
+
+      <div class="row">
+        <div class="col-sm-12">
+          <form name="answerForm" ng-submit = "detailsCtrl.answerSubmit(answerForm)" novalidate>
+            <textarea ui-tinymce ng-model="detailsCtrl.answer.body" name="body" required=""></textarea>
+            <div class="text-center">
+              <input ng-disabled="detailsCtrl.loading" class="btn btn-lg mdb-color" value="reply" type="submit">
+            </div>
+            <div class="text-center">
+              <div class="loader" ng-show="detailsCtrl.loading"></div>
+            </div>
+          </form>
+          <div class="text-center">
+            <button back class="btn btn-lg btn-danger">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
