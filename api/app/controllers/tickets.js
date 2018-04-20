@@ -123,7 +123,7 @@ module.exports.controller = function(app){
                 			tickets[0].answers.forEach(function(reply) {
 									if (reply.answerBy === 'Mentor') {
 										// in 'to' there willl be mentor email id and 'from' will be system admin mail
-										var mail = fireMail('md.abud.kamil@gmail.com', 'md.abud.kamil@gmail.com', 'Student Reply', `You are receiving this mail because one of our student ${req.decoded.fullName} reply to your answer.click the link to answer http://abudsupport.s3-website.us-east-2.amazonaws.com/#!/admin/ticket-details/${req.params.id}`);
+										var mail = fireMail(req.decoded.email, 'md.abud.kamil@gmail.com', 'Student Reply', `You are receiving this mail because one of our student ${req.decoded.fullName} reply to your answer.click the link to answer http://abudsupport.s3-website.us-east-2.amazonaws.com/#!/admin/ticket-details/${req.params.id}`);
 										mail.then(function(result){
 											 data  = {result:result, status:'success'};
 										}).catch((error) => {
