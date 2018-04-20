@@ -57,7 +57,7 @@ module.exports.controller = function(app){
 				}
 				else{
 					var mail = fireMail(req.body.email, 'md.abud.kamil@gmail.com', 'Password Reset', 'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-					'http://localhost/support-ticket/#!/reset/' + token);
+					'http://abudsupport.s3-website.us-east-2.amazonaws.com/#!/reset/' + token);
 					mail.then(function(result){
 						res.send({result:result, status:'success'});
 					}).catch((error) => {
