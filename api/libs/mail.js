@@ -7,7 +7,7 @@ module.exports = function(to, from, subject, text){
 		host: "smtp.gmail.com",
 		auth: {
 			user: "md.abud.kamil@gmail.com",
-			pass: "toshisabri"
+			pass: "zainazmi"
 		}
 	});
 	// user your own credention for testing
