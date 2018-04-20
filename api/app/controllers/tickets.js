@@ -123,7 +123,7 @@ module.exports.controller = function(app){
                 			tickets[0].answers.forEach(function(reply) {
 									if (reply.answerBy === 'Mentor') {
 										// in 'to' there willl be mentor email id and 'from' will be system admin mail
-										var mail = fireMail('md.abud.kamil@gmail.com', 'md.abud.kamil@gmail.com', 'Student Reply', `You are receiving this mail because one of our student ${req.decoded.fullName} reply to your answer.click the link to answer http://localhost/support-ticket/#!/admin/ticket-details/${req.params.id}`);
+										var mail = fireMail('md.abud.kamil@gmail.com', 'md.abud.kamil@gmail.com', 'Student Reply', `You are receiving this mail because one of our student ${req.decoded.fullName} reply to your answer.click the link to answer http://abudsupport.s3-website.us-east-2.amazonaws.com/#!/admin/ticket-details/${req.params.id}`);
 										mail.then(function(result){
 											 data  = {result:result, status:'success'};
 										}).catch((error) => {
@@ -153,7 +153,7 @@ module.exports.controller = function(app){
 			else{
 				if (answer) {
 					// 'from' will be email of admin or support system
-					var mail = fireMail(req.decoded.email, 'md.abud.kamil@gmail.com', 'Answer to your query', `You are receiving this because you got an answer from a Mentor, go to the link http://localhost/support-ticket/#!/ticket-details/${req.params.id}`);
+					var mail = fireMail(req.decoded.email, 'md.abud.kamil@gmail.com', 'Answer to your query', `You are receiving this because you got an answer from a Mentor, go to the link http://abudsupport.s3-website.us-east-2.amazonaws.com/#!/ticket-details/${req.params.id}`);
 					mail.then(function(result){
 						return res.send({result:result, status:'success'});
 					}).catch((error) => {
