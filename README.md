@@ -1,6 +1,8 @@
-Project Name - Live test taking system
+Project Name - Live test taking system.
+
 A Multiple choice test taking system in which tests are tracked live and analytics are
 generated based on that.
+
 Project Description -
 This project should be a ready to deploy test taking system. It must have all the features
 mentioned below and it must be deployed on a server before submission. It must be a
